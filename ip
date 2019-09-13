@@ -4,14 +4,8 @@ server {
 
   server_name _;
 
-  # / : return 403 && hide server info
   location / {
-    deny all;
-    server_tokens off;
-  }
-
-  location /ip {
     default_type text/plain;
-    return 200 $remote_addr\n;
+    return 200 $http_x_forwarded_for\n;
   }
 }
